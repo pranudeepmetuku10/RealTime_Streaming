@@ -1,67 +1,123 @@
-# Realtime Data Streaming With TCP Socket, Apache Spark, OpenAI LLM, Kafka and Elasticsearch | End-to-End Data Engineering Project
+# Real-Time Data Streaming Pipeline
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [System Architecture](#system-architecture)
-- [What You'll Learn](#what-youll-learn)
-- [Technologies](#technologies)
-- [Getting Started](#getting-started)
-- [Watch the Video Tutorial](#watch-the-video-tutorial)
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Introduction
+## Overview
 
-This project serves as a comprehensive guide to building an end-to-end data engineering pipeline using TCP/IP Socket, Apache Spark, OpenAI LLM, Kafka and Elasticsearch. It covers each stage from data acquisition, processing, sentiment analysis with ChatGPT, production to kafka topic and connection to elasticsearch.
+A production-ready real-time data streaming pipeline that processes and analyzes data using modern distributed systems. This project demonstrates the integration of TCP/IP sockets, Apache Spark, Apache Kafka, and Elasticsearch to build a scalable end-to-end data engineering solution with real-time sentiment analysis capabilities.
 
-## System Architecture
-![System_architecture.png](assets%2FSystem_architecture.png)
+## Architecture
 
-The project is designed with the following components:
+![System Architecture](assets/System_architecture.png)
 
-- **Data Source**: We use `yelp.com` dataset for our pipeline.
-- **TCP/IP Socket**: Used to stream data over the network in chunks
-- **Apache Spark**: For data processing with its master and worker nodes.
-- **Confluent Kafka**: Our cluster on the cloud
-- **Control Center and Schema Registry**: Helps in monitoring and schema management of our Kafka streams.
-- **Kafka Connect**: For connecting to elasticsearch
-- **Elasticsearch**: For indexing and querying
+### Pipeline Components
 
-## What You'll Learn
+- **Data Ingestion**: TCP/IP Socket streaming for network data transmission
+- **Stream Processing**: Apache Spark cluster (master-worker architecture)
+- **Message Broker**:  Confluent Kafka for distributed event streaming
+- **Monitoring**:  Kafka Control Center and Schema Registry
+- **Data Integration**: Kafka Connect for sink/source connectors
+- **Search & Analytics**: Elasticsearch for real-time indexing and querying
+- **AI Integration**: OpenAI API for sentiment analysis
 
-- Setting up data pipeline with TCP/IP 
-- Real-time data streaming with Apache Kafka
-- Data processing techniques with Apache Spark
-- Realtime sentiment analysis with OpenAI ChatGPT
-- Synchronising data from kafka to elasticsearch
-- Indexing and Querying data on elasticsearch
+## Features
 
-## Technologies
+- ✅ Real-time data ingestion via TCP/IP sockets
+- ✅ Distributed stream processing with Apache Spark
+- ✅ Event-driven architecture using Kafka
+- ✅ Sentiment analysis powered by OpenAI LLM
+- ✅ Scalable data storage and search with Elasticsearch
+- ✅ Dockerized deployment for easy setup
+- ✅ Schema management and monitoring
 
-- Python
-- TCP/IP
-- Confluent Kafka
-- Apache Spark
-- Docker
-- Elasticsearch
+## Tech Stack
 
-## Getting Started
+| Technology | Purpose |
+|------------|---------|
+| Python | Primary programming language |
+| TCP/IP | Network data streaming |
+| Apache Kafka | Distributed event streaming |
+| Apache Spark | Distributed data processing |
+| Elasticsearch | Search and analytics engine |
+| Docker | Containerization |
+| OpenAI API | Sentiment analysis |
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/airscholar/E2EDataEngineering.git
-    ```
+## Prerequisites
 
-2. Navigate to the project directory:
-    ```bash
-    cd E2EDataEngineering
-    ```
+- Docker and Docker Compose installed
+- Python 3.8+
+- Git
+- Confluent Cloud account (or local Kafka setup)
+- OpenAI API key (for sentiment analysis)
 
-3. Run Docker Compose to spin up the spark cluster:
-    ```bash
-    docker-compose up
-    ```
+## Installation
 
-For more detailed instructions, please check out the video tutorial linked below.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/pranudeepmetuku10/RealTime_Streaming.git
+   cd RealTime_Streaming
+   ```
 
-## Watch the Video Tutorial
+2. **Set up environment variables**
+   ```bash
+   cp .env.example . env
+   # Edit .env with your configurations
+   ```
 
-For a complete walkthrough and practical demonstration, check out the video here: [![Realtime Streaming with TCP IP Spark LLM Kafka Elasticsearch.png](assets%2FRealtime%20Streaming%20with%20TCP%20IP%20Spark%20LLM%20Kafka%20Elasticsearch.png)](https://www.youtube.com/watch?v=ETdyFfYZaqU)
+3. **Start the services**
+   ```bash
+   docker-compose up -d
+   ```
+
+4. **Install Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+1. **Start the data producer**
+   ```bash
+   python src/data_producer.py
+   ```
+
+2. **Run the Spark streaming job**
+   ```bash
+   spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.x.x \
+                src/spark_streaming. py
+   ```
+
+3. **Access the monitoring dashboards**
+   - Spark UI: http://localhost:8080
+   - Kafka Control Center: http://localhost:9021
+   - Elasticsearch: http://localhost:9200
+
+## Project Structure
+
+```
+RealTime_Streaming/
+├── assets/              # Images and diagrams
+├── config/              # Configuration files
+├── data/                # Sample datasets
+├── src/
+│   ├── data_producer.py    # TCP socket producer
+│   ├── spark_streaming.py  # Spark processing logic
+│   ├── kafka_producer.py   # Kafka producer
+│   └── sentiment_analysis.py  # OpenAI integration
+├── docker-compose.yml   # Docker services
+├── requirements.txt     # Python dependencies
+└── README. md
+```
+
+⭐ Star this repository if you found it helpful!
+```
